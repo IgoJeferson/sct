@@ -4,73 +4,66 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.fiap.sct.type.Perfil;
+
 @Entity
-@Table(name="usuarios")
-public class Usuario implements Serializable{
+@Table(name = "SCT_USUARIOS")
+public class Usuario implements Serializable {
 
-	private String codigo;
-	
-	
-	public void setCodigoUsuario(String codigo){
-		this.codigo = codigo;
-	}
-	public String getCodigoUsuario(){
-		return codigo;
-	}
-	
-	
-	
-	
-	
-	
-	private static final long serialVersionUID = 1L;
-	@Id @GeneratedValue
-	@Column(name="ID")
-	private Integer Id;
-	
-	@Column(name="USUARIO")
-	private String nome;
-	
-	@Column(name="SENHA")
+	private static final long serialVersionUID = -14032184034480956L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", unique = true, nullable = false)
+	private Integer id;
+
+	@Column(name = "LOGIN", nullable = false, length = 45)
+	private String login;
+
+	@Column(name = "SENHA", nullable = false, length = 45)
 	private String senha;
-	
-	@Column(name="NIVEL")
-	private int nivel;
 
-	
-	public Usuario() {}
-	
-	public Usuario(String nome, String senha, int nivel){
-		setNome(nome);
-		setSenha(senha);
-		setNivel(nivel);
-	}
+	@Column(name = "PERFIL")
+	@Enumerated(EnumType.STRING)
+	private Perfil perfil;
+
 	public Integer getId() {
-		return Id;
+		return id;
 	}
+
 	public void setId(Integer id) {
-		Id = id;
-	}	
-	public String getNome() {
-		return nome;
+		this.id = id;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public String getLogin() {
+		return login;
 	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public int getNivel() {
-		return nivel;
+
+	public Perfil getPerfil() {
+		return perfil;
 	}
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
-	}	
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+	
 }
