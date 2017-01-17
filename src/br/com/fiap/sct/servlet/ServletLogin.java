@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.fiap.sct.dao.GenericDao;
+import br.com.fiap.sct.dao.util.GenericDao;
 import br.com.fiap.sct.entity.Usuario;
 
 /**
@@ -52,18 +52,18 @@ public class ServletLogin extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String senha = request.getParameter("senha");
 			
-			GenericDao<Usuario> dao = new GenericDao<>(Usuario.class);
-			Usuario usuario = dao.buscarUsuario(nome, senha);
-			
-			if(usuario != null){
-				
-				HttpSession session = request.getSession();
-				session.setAttribute("session_usuario", usuario);
-				response.sendRedirect("admin/menu.jsp");
-			}
-			else{
-				response.sendRedirect("login.jsp");
-			}
+//			GenericDao<Usuario> dao = new GenericDao<>(Usuario.class);
+//			Usuario usuario = dao.buscarUsuario(nome, senha);
+//			
+//			if(usuario != null){
+//				
+//				HttpSession session = request.getSession();
+//				session.setAttribute("session_usuario", usuario);
+//				response.sendRedirect("admin/menu.jsp");
+//			}
+//			else{
+//				response.sendRedirect("login.jsp");
+//			}
 		} catch (Exception e) {
 			response.sendRedirect("login.jsp");
 		}

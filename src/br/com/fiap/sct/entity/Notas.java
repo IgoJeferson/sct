@@ -11,9 +11,6 @@ import javax.persistence.Table;
 @Table(name = "SCT_NOTAS")
 public class Notas implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4392047100016330244L;
 
 	@EmbeddedId

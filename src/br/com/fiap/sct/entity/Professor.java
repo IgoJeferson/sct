@@ -1,7 +1,9 @@
 package br.com.fiap.sct.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -37,6 +39,7 @@ public class Professor implements Serializable {
 	private Set<Disciplina> disciplinas = new HashSet<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 
 	public Integer getId() {
@@ -62,6 +65,10 @@ public class Professor implements Serializable {
 	public void setDisciplinas(Set<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
+	
+	public void addDisciplina(Disciplina disciplina){
+		this.disciplinas.add(disciplina);
+	}
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -69,6 +76,36 @@ public class Professor implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	@Override
+	public String toString() {
+		final int maxLen = 2;
+		StringBuilder builder = new StringBuilder();
+		builder.append("Professor [");
+		if (id != null)
+			builder.append("id=").append(id).append(", ");
+		if (nome != null)
+			builder.append("nome=").append(nome).append(", ");
+		if (disciplinas != null)
+			builder.append("disciplinas=").append(toString(disciplinas, maxLen)).append(", ");
+		if (usuario != null)
+			builder.append("usuario=").append(usuario);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	private String toString(Collection<?> collection, int maxLen) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("[");
+		int i = 0;
+		for (Iterator<?> iterator = collection.iterator(); iterator.hasNext() && i < maxLen; i++) {
+			if (i > 0)
+				builder.append(", ");
+			builder.append(iterator.next());
+		}
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }

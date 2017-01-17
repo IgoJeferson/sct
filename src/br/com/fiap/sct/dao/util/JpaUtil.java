@@ -1,4 +1,4 @@
-package br.com.fiap.sct.dao;
+package br.com.fiap.sct.dao.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

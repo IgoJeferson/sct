@@ -65,5 +65,21 @@ public class Usuario implements Serializable {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Usuario [");
+		if (id != null)
+			builder.append("id=").append(id).append(", ");
+		if (login != null)
+			builder.append("login=").append(login).append(", ");
+		if (senha != null)
+			builder.append("senha=").append(senha).append(", ");
+		if (perfil != null)
+			builder.append("perfil=").append(perfil);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 }

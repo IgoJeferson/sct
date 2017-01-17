@@ -1,11 +1,8 @@
-package br.com.fiap.sct.dao;
+package br.com.fiap.sct.dao.util;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
-import br.com.fiap.sct.entity.Usuario;
 
 public class GenericDao<T> implements Dao<T> {
 
@@ -23,7 +20,15 @@ public class GenericDao<T> implements Dao<T> {
 		em.persist(entidade);
 		em.getTransaction().commit();
 		em.close();
-
+	}
+	
+	@Override
+	public void atualizar(T entidade) {
+		em = JpaUtil.getEntityManager();
+		em.getTransaction().begin();
+		em.merge(entidade);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -43,17 +48,11 @@ public class GenericDao<T> implements Dao<T> {
 
 		return entidade;
 	}
-	
-	public Usuario buscarUsuario(String nome, String senha){
-		em = JpaUtil.getEntityManager();
-		em.getTransaction().begin();		
-		
-		Query query = em.createQuery(
-			"select u from Usuario u where nome = :nome and senha = :senha");
-		
-		query.setParameter("nome", nome);
-		query.setParameter("senha", senha);
-		return (Usuario)query.getSingleResult();
-	}
 
+	@Override
+	public void remover(T entidade) {
+		em = JpaUtil.getEntityManager();
+		em.remove(entidade);
+	}
+	
 }

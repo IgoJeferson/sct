@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -35,6 +36,7 @@ public class Escola implements Serializable {
 	private String telefone;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="ESCOLA_ID")
 	private Set<Curso> cursos = new HashSet<>();
 
 	public Integer getId() {
@@ -76,5 +78,14 @@ public class Escola implements Serializable {
 	public void setCursos(Set<Curso> cursos) {
 		this.cursos = cursos;
 	} 
+	
+	public void addCurso(Curso curso){
+		this.cursos.add(curso);
+	}
 
+	@Override
+	public String toString() {
+		return "Escola [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + "]";
+	}
+	
 }

@@ -2,13 +2,16 @@ package br.com.fiap.sct.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,11 +30,15 @@ public class Aluno implements Serializable {
 
 	@Column(name="NOME", nullable=false, length=45)
 	private String nome;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Curso curso;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 
-	@ManyToOne
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	private Notas nota;
 
 	public Integer getId() {
@@ -73,4 +80,18 @@ public class Aluno implements Serializable {
 	public void setNota(Notas nota) {
 		this.nota = nota;
 	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno [id=" + id + ", ra=" + ra + ", nome=" + nome + ", usuario=" + usuario + ", nota=" + nota + "]";
+	}
+	
 }

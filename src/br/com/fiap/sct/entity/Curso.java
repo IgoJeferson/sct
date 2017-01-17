@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,13 +27,18 @@ public class Curso implements Serializable {
 	@Column(name="ID", unique=true, nullable=false) 
 	private Integer id;
 
-	@Column(name="NOME", nullable=false, length=45)
+	@Column(name="NOME", nullable=false, length=100)
 	private String nome;
 	
+	@ManyToOne
+	private Escola escola;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="CURSO_ID")
 	private Set<Disciplina> disciplinas = new HashSet<>(); 
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="CURSO_ID")
 	private Set<Aluno> alunos = new HashSet<>();
 
 	public Integer getId() {
@@ -57,6 +64,10 @@ public class Curso implements Serializable {
 	public void setDisciplinas(Set<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
+	
+	public void addDisciplina(Disciplina disciplina){
+		this.disciplinas.add(disciplina);
+	}
 
 	public Set<Aluno> getAlunos() {
 		return alunos;
@@ -65,5 +76,22 @@ public class Curso implements Serializable {
 	public void setAlunos(Set<Aluno> alunos) {
 		this.alunos = alunos;
 	} 
+	
+	public void addAluno(Aluno aluno){
+		this.alunos.add(aluno);
+	}
 
+	public Escola getEscola() {
+		return escola;
+	}
+
+	public void setEscola(Escola escola) {
+		this.escola = escola;
+	}
+
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nome=" + nome + ", alunos=" + alunos + "]";
+	}
+	
 }

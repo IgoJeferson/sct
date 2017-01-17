@@ -14,7 +14,7 @@ public class NotasPK implements Serializable {
 	private Integer alunoID;
 
 	@Column(name="DISCIPLINA_ID")
-	private String disciplinaID;
+	private Integer disciplinaID;
 
 	public Integer getAlunoID() {
 		return alunoID;
@@ -24,11 +24,11 @@ public class NotasPK implements Serializable {
 		this.alunoID = alunoID;
 	}
 
-	public String getDisciplinaID() {
+	public Integer getDisciplinaID() {
 		return disciplinaID;
 	}
 
-	public void setDisciplinaID(String disciplinaID) {
+	public void setDisciplinaID(Integer disciplinaID) {
 		this.disciplinaID = disciplinaID;
 	}
 
