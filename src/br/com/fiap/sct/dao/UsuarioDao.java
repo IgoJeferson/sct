@@ -23,4 +23,5 @@ public class UsuarioDao extends GenericDao<Usuario>{
 		return (Usuario)query.getSingleResult();
 	}
 
+	
 }
