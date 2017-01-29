@@ -42,9 +42,9 @@ public class GenericDao<T> implements Dao<T> {
 	@Override
 	public T buscar(int id) {
 		em = JpaUtil.getEntityManager();
-		//em.getTransaction().begin();
+		em.getTransaction().begin();
 		T entidade = em.find(classe, id);
-		//em.getTransaction().commit();
+		em.getTransaction().commit();
 		em.close();
 
 		return entidade;

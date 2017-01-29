@@ -37,9 +37,10 @@ public class ServletCadastroEscola extends HttpServlet {
 		escola.setTelefone(telefone);
 		EscolaDao dao = new EscolaDao();
 		dao.adicionar(escola);
-		List<Escola> lista = new ArrayList<Escola>();
-		lista = dao.listar();
-		request.getRequestDispatcher("listarEscola.jsp").forward(request, response);		
+		List<Escola> listaEscolas = new ArrayList<Escola>();
+		listaEscolas = dao.listar();
+		request.setAttribute("listaEscolas", listaEscolas);
+		request.getRequestDispatcher("listaEscola.jsp").forward(request, response);		
 	}
 
 }
