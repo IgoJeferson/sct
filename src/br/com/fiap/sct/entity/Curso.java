@@ -30,14 +30,15 @@ public class Curso implements Serializable {
 	@Column(name="NOME", nullable=false, length=100)
 	private String nome;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="ESCOLA_ID")
 	private Escola escola;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name="CURSO_ID")
 	private Set<Disciplina> disciplinas = new HashSet<>(); 
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name="CURSO_ID")
 	private Set<Aluno> alunos = new HashSet<>();
 

@@ -1,8 +1,6 @@
 package br.com.fiap.sct.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -29,11 +26,11 @@ public class Disciplina implements Serializable {
 	@Column(name="NOME", nullable=false, length=100)
 	private String nome;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Curso curso;
 	
-	@ManyToMany(fetch=FetchType.LAZY, mappedBy="disciplinas") 
-	private Set<Professor> professor = new HashSet<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Professor professor;
 
 	public Integer getId() {
 		return id;
@@ -51,18 +48,6 @@ public class Disciplina implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<Professor> getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Set<Professor> professor) {
-		this.professor = professor;
-	}
-	
-	public void addProfessor(Professor professor){
-		this.professor.add(professor);
-	}
-
 	public Curso getCurso() {
 		return curso;
 	}
@@ -71,6 +56,14 @@ public class Disciplina implements Serializable {
 		this.curso = curso;
 	}
 
+	public Professor getProfessor() {
+		return professor;
+	}
+	
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

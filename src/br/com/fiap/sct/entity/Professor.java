@@ -14,9 +14,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,13 +32,16 @@ public class Professor implements Serializable {
 
 	@Column(name = "NOME", nullable = false, length = 45)
 	private String nome;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="ESCOLA_ID")
+	private Escola escola;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "PROFESSOR_DISCIPLINA", joinColumns = { @JoinColumn(name = "PROFESSOR_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
-			@JoinColumn(name = "DISCIPLINA_ID", nullable = false, updatable = false) })
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@JoinColumn(name="PROFESSOR_ID")
 	private Set<Disciplina> disciplinas = new HashSet<>();
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 
@@ -77,6 +80,14 @@ public class Professor implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public Escola getEscola() {
+		return escola;
+	}
+
+	public void setEscola(Escola escola) {
+		this.escola = escola;
+	}
 
 	@Override
 	public String toString() {
@@ -107,5 +118,5 @@ public class Professor implements Serializable {
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 }

@@ -31,14 +31,14 @@ public class Aluno implements Serializable {
 	@Column(name="NOME", nullable=false, length=45)
 	private String nome;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Curso curso;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 
-	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.MERGE,fetch = FetchType.EAGER)
 	private Notas nota;
 
 	public Integer getId() {

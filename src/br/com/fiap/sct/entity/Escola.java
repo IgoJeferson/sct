@@ -26,7 +26,7 @@ public class Escola implements Serializable {
 	@Column(name="ID", unique=true, nullable=false) 
 	private Integer id;
 	
-	@Column(name="NOME", nullable=false, length=45)
+	@Column(name="NOME", nullable=false, length=80)
 	private String nome;
 	
 	@Column(name="ENDERECO", nullable=false, length=100)
@@ -35,7 +35,7 @@ public class Escola implements Serializable {
 	@Column(name="TELEFONE", nullable=false, length=14)
 	private String telefone;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name="ESCOLA_ID")
 	private Set<Curso> cursos = new HashSet<>();
 

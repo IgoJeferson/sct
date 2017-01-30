@@ -13,7 +13,7 @@
 		<class>br.com.fiap.sct.entity.Usuario</class>
 		<class>br.com.fiap.sct.entity.NotasPK</class>
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sct" />

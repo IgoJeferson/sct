@@ -10,62 +10,59 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.fiap.sct.dao.util.GenericDao;
+import br.com.fiap.sct.dao.UsuarioDao;
 import br.com.fiap.sct.entity.Usuario;
+import br.com.fiap.sct.type.Perfil;
 
-/**
- * Servlet implementation class ServletLogin
- */
-@WebServlet(
-		urlPatterns = { "/login" }, 
-		initParams = { 
-				@WebInitParam(name = "user", value = "admin"), 
-				@WebInitParam(name = "pwd", value = "admin")
-		})
+@WebServlet(urlPatterns = { "/login" }, initParams = { @WebInitParam(name = "user", value = "admin"), @WebInitParam(name = "pwd", value = "admin") })
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ServletLogin() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	public ServletLogin() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		//recebendo dados do formulario
-//		String nome = request.getParameter("nome");
-//		String senha = request.getParameter("senha");
-//		
-//		//lendo os parametros de inicialização do servlet
-//		String user = this.getServletConfig().getInitParameter("user");
-//		String pwd = this.getServletConfig().getInitParameter("pwd");
-//		
-//		if(nome.equals(user) && senha.equals(pwd)){
-//			response.sendRedirect("admin/menu.jsp");
-//		}
-//		else {
-//			response.sendRedirect("login.jsp");
-//		}
+
 		try {
-			String nome = request.getParameter("nome");
-			String senha = request.getParameter("senha");
+			String login = request.getParameter("login").trim();
+			String senha = request.getParameter("senha").trim();
+			int codigoPerfil = Integer.parseInt(request.getParameter("perfil").trim());
 			
-//			GenericDao<Usuario> dao = new GenericDao<>(Usuario.class);
-//			Usuario usuario = dao.buscarUsuario(nome, senha);
-//			
-//			if(usuario != null){
-//				
-//				HttpSession session = request.getSession();
-//				session.setAttribute("session_usuario", usuario);
-//				response.sendRedirect("admin/menu.jsp");
-//			}
-//			else{
-//				response.sendRedirect("login.jsp");
-//			}
+			Perfil perfil = this.verificaPerfil(codigoPerfil);
+
+			UsuarioDao dao = new UsuarioDao();
+			Usuario usuarioAutenticado = dao.buscarUsuario(login, senha, perfil);
+
+			if (usuarioAutenticado != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("usuarioAutenticado", usuarioAutenticado);
+				response.sendRedirect("admin/home.jsp");
+				
+			} else {
+				
+				response.sendRedirect("login.jsp");
+			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.sendRedirect("login.jsp");
+		}
+
+	}
+	
+	private Perfil verificaPerfil(int codigoPerfil){
+		
+		if(Perfil.ADMINISTRADOR.getCodigo() == codigoPerfil){
+			return Perfil.ADMINISTRADOR;
+		} else if(Perfil.PROFESSOR.getCodigo() == codigoPerfil) {
+			return Perfil.PROFESSOR;
+		} else if(Perfil.ALUNO.getCodigo() == codigoPerfil){
+			return Perfil.ALUNO;
+		} else {
+			throw new IllegalArgumentException("Perfil inválido");
 		}
 		
 	}

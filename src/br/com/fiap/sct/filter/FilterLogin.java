@@ -29,10 +29,10 @@ public class FilterLogin implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest)request).getSession();
-		Usuario usuario = (Usuario)session.getAttribute("session_usuario");
+		Usuario usuario = (Usuario)session.getAttribute("usuarioAutenticado");
 		
 		if(usuario == null){
-			((HttpServletResponse)response).sendRedirect("/Aula_ServletJsp/login.jsp");
+			((HttpServletResponse)response).sendRedirect("/SCT/login.jsp");
 		}
 		else {
 			chain.doFilter(request, response);			
@@ -40,6 +40,5 @@ public class FilterLogin implements Filter {
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 }
