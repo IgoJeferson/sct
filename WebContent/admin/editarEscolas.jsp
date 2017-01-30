@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SCT - Cadastro de Escolas</title>
+	<title>SCT - Editar Cadastro de Escolas</title>
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	 <meta charset="utf-8" />
 	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -28,7 +28,7 @@
 		<div class="panel panel-success"> 
 			<div class="panel-heading">
 				<h5 class="panel-title">
-					<span class="glyphicon glyphicon-home"></span>&nbsp;Cadastro de Escolas
+					<span class="glyphicon glyphicon-home"></span>&nbsp;Editar Cadastro de Escolas
 				</h5>
 			</div>
 			<div class="panel-body">
@@ -51,40 +51,10 @@
   					  </div>
   					  
 					  <div class="pull-right">
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Incluir</button>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Salvar</button>
 					  </div>
 					    	
-				 </form>
-		  		<br><br><br><br><br><br><br><br>
-		  
-		  	<br><br>
-			<div class="panel panel-info">
-			  <div class="panel-heading">Lista de Escolas</div>
-			  <div class="panel-body">
-			     <table class="table">
-				    <thead>
-				    	<tr>
-					    	<th>Nome</th>
-					    	<th>Endereço</th>
-					    	<th>Telefone</th>
-					    	<th></th>
-					    </tr>	
-				    </thead>
-				    <tbody>
-				    	<c:forEach var="escola" items="${escolaBean.consultarEscolas}">
-							<tr>
-								<td><c:out value="${escola.nome}"/></td>
-								<td><c:out value="${escola.endereco}"/></td>
-								<td><c:out value="${escola.telefone}"/></td>
-								<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
-								<td><a href="${pageContext.request.contextPath}/admin/editarEscolas.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
-							</tr>
-						</c:forEach>
-				    </tbody>
-				  </table>
-			  </div>
-			
-			</div>
+				 </form>		
 		</div>  
 	</div>
 	</div>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SCT - Cadastro de Cursos</title>
+	<title>SCT - Editar Cadastro de Cursos</title>
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	 <meta charset="utf-8" />
 	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -40,7 +40,7 @@
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h5 class="panel-title">
-					<span class="glyphicon glyphicon-flag"></span>&nbsp;Cadastro de Cursos
+					<span class="glyphicon glyphicon-flag"></span>&nbsp;Editar Cadastro de Cursos
 				</h5>
 			</div>
 			<div class="panel-body">
@@ -65,50 +65,11 @@
   					  </div>
   					  
 					  <div class="pull-right">
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Incluir</button>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Salvar</button>
 					  </div>
 					    	
 				 </form>
-		  		<br><br><br><br><br><br><br><br>
-		  		<br><br>
-				<div class="panel panel-info">
-				  
-				  <div class="panel-heading">Lista de Cursos</div>
-				  <div class="panel-body">
-				     <table class="table">
-					    <thead>
-					    	<tr>
-					    		<th>Escola</th>
-						    	<th>Nome</th>
-						    	<th>Disciplinas</th>
-						    	<th>Alunos</th>
-						    	<th></th>
-						    </tr>	
-					    </thead>
-					    <tbody>
-					    	<c:forEach var="curso" items="${cursoBean.consultarCursos}">
-								<tr>
-									<td><c:out value="${curso.escola.nome}"/></td>
-									<td><c:out value="${curso.nome}"/></td>
-									<td>
-										<c:forEach var="disciplina" items="${curso.disciplinas}">
-											* ${disciplina.nome} <br>
-										</c:forEach>
-									</td>
-									<td>
-										<c:forEach var="aluno" items="${curso.alunos}">
-											* ${aluno.nome} <br>
-										</c:forEach>
-									</td>
-									<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
-									<td><a href="${pageContext.request.contextPath}/admin/editarCursos.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
-								</tr>
-							</c:forEach>
-					    </tbody>
-					  </table>
-				  </div>
-				
-				</div>
+
 			</div>  
 		</div>
 	</div>

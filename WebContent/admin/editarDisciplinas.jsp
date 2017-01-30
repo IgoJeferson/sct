@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SCT - Cadastro de Escolas</title>
+	<title>SCT - Editar Cadastro de Discipinas</title>
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	 <meta charset="utf-8" />
 	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -17,76 +17,63 @@
 	 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sct.css" />
-
+	 
 </head>
 <body>
 	
 	<jsp:include page="menu.jsp"></jsp:include>
-	<jsp:useBean id="escolaBean" class="br.com.fiap.sct.bean.EscolasBean" />
+	<jsp:useBean id="cursoBean" class="br.com.fiap.sct.bean.CursosBean" />
+	<jsp:useBean id="professorBean" class="br.com.fiap.sct.bean.ProfessoresBean" />
+	<jsp:useBean id="disciplinasBean" class="br.com.fiap.sct.bean.DisciplinasBean" />
 	
 	<div class="container">
-		<div class="panel panel-success"> 
+		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h5 class="panel-title">
-					<span class="glyphicon glyphicon-home"></span>&nbsp;Cadastro de Escolas
+					<span class="glyphicon glyphicon-list-alt"></span>&nbsp;Editar Cadastro de Discipinas
 				</h5>
 			</div>
 			<div class="panel-body">
 			
-				<form action="cadastrarEscola" method="post">
+				<form action="cadastrarDisciplina" method="post">
 					
+					  <div class="form-group col-md-12">
+					  	
+					  	<label class="control-label" for="curso">Curso</label>
+					    <select id="curso" name="cursoSelecionado" class="form-control" required>
+					      <option value="">Selecione</option>
+					      <c:forEach var="curso" items="${cursoBean.consultarCursos}">
+							<option value="${curso.id}">${curso.nome}</option>					      
+					      </c:forEach>
+					    </select>
+					    
+					  </div>
+					  
+					  <div class="form-group col-md-12">
+					  	
+					  	<label class="control-label" for="professor">Professor</label>
+					    <select id="professor" name="professorSelecionado" class="form-control" required>
+					      <option value="">Selecione</option>
+					      <c:forEach var="professor" items="${professorBean.consultarProfessores}">
+							<option value="${professor.id}">${professor.nome}</option>					      
+					      </c:forEach>
+					    </select>
+					    
+					  </div>
+					  
   					  <div class="form-group col-md-12">
 						  <label class="control-label" for="nome">Nome</label>  
-  		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome da Escola" class="form-control input-md" required maxlength="80" />
-  					  </div>
-  					  
-  					  <div class="form-group col-md-8">
-						  <label class="control-label" for="endereco">Endereço</label>  
-  		 				  <input id="endereco" name="endereco" type="text" placeholder="Digite o Endereço" class="form-control input-md" required maxlength="100" />
-  					  </div>
-  					  
-  					  <div class="form-group col-md-4">
-						  <label class="control-label" for="telefone">Telefone</label>  
-  		 				  <input id="telefone" name="telefone" type="text" placeholder="Digite o Nº de Telefone" class="form-control input-md" required maxlength="14" />
+  		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome da Disciplina" class="form-control input-md" required />
   					  </div>
   					  
 					  <div class="pull-right">
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Incluir</button>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Salvar</button>
 					  </div>
 					    	
 				 </form>
-		  		<br><br><br><br><br><br><br><br>
-		  
-		  	<br><br>
-			<div class="panel panel-info">
-			  <div class="panel-heading">Lista de Escolas</div>
-			  <div class="panel-body">
-			     <table class="table">
-				    <thead>
-				    	<tr>
-					    	<th>Nome</th>
-					    	<th>Endereço</th>
-					    	<th>Telefone</th>
-					    	<th></th>
-					    </tr>	
-				    </thead>
-				    <tbody>
-				    	<c:forEach var="escola" items="${escolaBean.consultarEscolas}">
-							<tr>
-								<td><c:out value="${escola.nome}"/></td>
-								<td><c:out value="${escola.endereco}"/></td>
-								<td><c:out value="${escola.telefone}"/></td>
-								<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
-								<td><a href="${pageContext.request.contextPath}/admin/editarEscolas.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
-							</tr>
-						</c:forEach>
-				    </tbody>
-				  </table>
-			  </div>
-			
-			</div>
-		</div>  
-	</div>
+		  		
+			</div>  
+		</div>
 	</div>
 		
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -96,7 +83,7 @@
 		$(function(){
 			$('.menu').click(function(){
 				$('.menu').removeClass('active');
-				$('#menuEscola').addClass('active');
+				$('#menuDisciplina').addClass('active');
 			});
 		});
 	</script>

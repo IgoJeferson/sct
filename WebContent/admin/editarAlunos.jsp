@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SCT - Cadastro de Alunos</title>
+	<title>SCT - Editar Cadastro de Alunos</title>
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	 <meta charset="utf-8" />
 	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -28,16 +28,26 @@
 	
 	<div class="container">
 		<div class="panel panel-success">
-			<div class="panel-heading">Cadastro de Notas</div>
+			<div class="panel-heading">Editar Cadastro de Alunos</div>
 			<div class="panel-body">
 			
-				<form action="cadastrarNota" method="#">
+				<form action="cadastrarAluno" method="post">
 					
-
+					<div class="form-group col-md-12">
+					  	
+					  	<label class="control-label" for="curso">Curso</label>
+					    <select id="curso" name="cursoSelecionado" class="form-control" required>
+					      <option value="">Selecione</option>
+					      <c:forEach var="curso" items="${cursoBean.consultarCursos}">
+							<option value="${curso.id}">${curso.nome}</option>					      
+					      </c:forEach>
+					    </select>
+					    
+					 </div>
 					  
   					  <div class="form-group col-md-8">
-						  <label class="control-label" for="nome">Disciplinas</label>  
-  		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome da Disciplina" class="form-control input-md" required />
+						  <label class="control-label" for="nome">Nome</label>  
+  		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome do Aluno" class="form-control input-md" required />
   					  </div>
   					  
   					   <div class="form-group col-md-4">
@@ -45,59 +55,28 @@
   		 				  <input id="ra" name="ra" type="number" placeholder="Digite o RA do Aluno" class="form-control input-md" required />
   					  </div>
   					  
-  					<div class="form-group col-md-4">
-						  <label class="control-label" for="login">Atividade Pratica</label>  
-  		 				  <input id="login" name="login" type="text" placeholder="Digite a nota da Atividade Pratica" class="form-control input-md" required />
-  		 				  <span class="help-block"> </span>  
+  					  <div class="form-group col-md-4">
+						  <label class="control-label" for="login">Login</label>  
+  		 				  <input id="login" name="login" type="text" placeholder="Digite o Login do Aluno" class="form-control input-md" required />
+  		 				  <span class="help-block">Este Login será usado para entrar no sistema</span>  
   					  </div>
   					  
   					  <div class="form-group col-md-4">
-						  <label class="control-label" for="projeto1">Projeto 1</label>  
-  		 				  <input id="projeto1" name="projeto1" type="projeto1" placeholder="Digite a nota do Projeto 1" class="form-control input-md" required />
+						  <label class="control-label" for="senha">Senha</label>  
+  		 				  <input id="senha" name="senha" type="password" placeholder="Digite a senha" class="form-control input-md" required />
   					  </div>
   					  
   					  <div class="form-group col-md-4">
-						  <label class="control-label" for="projeto2">Projeto 2</label>  
-  		 				  <input id="projeto2" name="projeto2" type="password" placeholder="Digite a nota do Projeto 2" class="form-control input-md" required />
+						  <label class="control-label" for="confirmacaoSenha">Confirmar senha</label>  
+  		 				  <input id="confirmacaoSenha" name="confirmacaoSenha" type="password" placeholder="Confirme a senha" class="form-control input-md" required />
   					  </div>
     
 					  <div class="pull-right">
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Incluir</button>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Salvar</button>
 					  </div>
 					    	
 				 </form>
-		  		<br><br><br><br><br><br><br><br><br><br><br><br>
-		  		<br><br>
-				<div class="panel panel-info">
-				  
-				  <div class="panel-heading">Lista de Disciplinas</div>
-				  <div class="panel-body">
-				     <table class="table">
-					    <thead>
-					    	<tr>
-					    		<th>Curso</th>
-						    	<th>RA</th>
-						    	<th>Nome</th>
-						    	<th>Notas</th>
-						    	<th></th>
-						    </tr>	
-					    </thead>
-					    <tbody>
-					    	<c:forEach var="aluno" items="#">
-								<tr>
-									<td><c:out value="#"/></td>
-									<td><c:out value="#"/></td>
-									<td><c:out value="#"/></td>
-									<td><a href="consultarLivro?codigo=${book.codigo}">Consultar Notas</a></td>
-									<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
-									<td><a href="${pageContext.request.contextPath}/admin/editarNotas.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
-								</tr>
-							</c:forEach>
-					    </tbody>
-					  </table>
-				  </div>
-				
-				</div>
+
 			</div>  
 		</div>
 	</div>

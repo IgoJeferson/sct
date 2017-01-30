@@ -100,6 +100,8 @@
 									<td><c:out value="${aluno.nome}"/></td>
 									<td><a href="consultarLivro?codigo=${book.codigo}">Consultar Notas</a></td>
 									<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a href="${pageContext.request.contextPath}/admin/editarAlunos.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
+									
 								</tr>
 							</c:forEach>
 					    </tbody>

@@ -108,6 +108,7 @@
 										</c:forEach>
 									</td>
 									<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
 								</tr>
 							</c:forEach>
 					    </tbody>
