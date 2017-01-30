@@ -1,27 +1,36 @@
 package br.com.fiap.sct.dao;
 
-import javax.persistence.Query;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import br.com.fiap.sct.dao.util.GenericDao;
 import br.com.fiap.sct.dao.util.JpaUtil;
 import br.com.fiap.sct.entity.Usuario;
+import br.com.fiap.sct.type.Perfil;
 
-public class UsuarioDao extends GenericDao<Usuario>{
-	
-	public UsuarioDao(){
+public class UsuarioDao extends GenericDao<Usuario> {
+
+	public UsuarioDao() {
 		super(Usuario.class);
 	}
-	
-	public Usuario buscarUsuario(String nome, String senha){
-		em = JpaUtil.getEntityManager();
-		em.getTransaction().begin();		
-		
-		Query query = em.createQuery("select e from Usuario e where e.nome = :nome and e.senha = :senha");
-		
-		query.setParameter("nome", nome);
-		query.setParameter("senha", senha);
-		return (Usuario)query.getSingleResult();
+
+	public Usuario buscarUsuario(String nome, String senha, Perfil perfil) {
+
+		try {
+
+			em = JpaUtil.getEntityManager();
+			em.getTransaction().begin();
+
+			TypedQuery<Usuario> query = em.createQuery("select e from Usuario e where e.login = :login and e.senha = :senha and e.perfil = :perfil", Usuario.class);
+
+			query.setParameter("login", nome);
+			query.setParameter("senha", senha);
+			query.setParameter("perfil", perfil);
+
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
-	
 }
