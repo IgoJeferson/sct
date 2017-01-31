@@ -28,10 +28,15 @@
 	
 	<div class="container">
 		<div class="panel panel-success">
-			<div class="panel-heading">Cadastro de Alunos</div>
+			<div class="panel-heading">
+				<h5 class="panel-title">
+					<span class="glyphicon glyphicon-education"></span>&nbsp;Cadastro de Alunos
+				</h5>
+			</div>
 			<div class="panel-body">
 			
 				<form action="cadastrarAluno" method="post">
+				<div>${mensagem}</div>
 					
 					<div class="form-group col-md-12">
 					  	
@@ -70,10 +75,12 @@
 						  <label class="control-label" for="confirmacaoSenha">Confirmar senha</label>  
   		 				  <input id="confirmacaoSenha" name="confirmacaoSenha" type="password" placeholder="Confirme a senha" class="form-control input-md" required />
   					  </div>
-    
-					  <div class="pull-right">
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Incluir</button>
-					  </div>
+  					  
+   					  <c:if test="${sessionScope.usuarioAutenticado.perfil eq 'ADMINISTRADOR'}">
+						  <div class="pull-right">
+							<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Incluir</button>
+						  </div>
+					  </c:if>
 					    	
 				 </form>
 		  		<br><br><br><br><br><br><br><br><br><br><br><br>
@@ -98,8 +105,10 @@
 									<td><c:out value="${aluno.curso.nome}"/></td>
 									<td><c:out value="${aluno.ra}"/></td>
 									<td><c:out value="${aluno.nome}"/></td>
-									<td><a href="consultarLivro?codigo=${book.codigo}">Consultar Notas</a></td>
-									<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a href="consultarBoletim?codigoAluno=${aluno.id}">Consultar Notas</a></td>
+									<td><a href="excluirAluno?codigo=${aluno.ra}"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a href="${pageContext.request.contextPath}/admin/editarAlunos.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
+									
 								</tr>
 							</c:forEach>
 					    </tbody>

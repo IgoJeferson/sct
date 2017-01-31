@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
 			<div class="panel-body">
 			
 				<form action="cadastrarEscola" method="post">
-					
+					<div>${mensagem}</div>	
   					  <div class="form-group col-md-12">
 						  <label class="control-label" for="nome">Nome</label>  
   		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome da Escola" class="form-control input-md" required maxlength="80" />
@@ -76,7 +77,7 @@
 								<td><c:out value="${escola.nome}"/></td>
 								<td><c:out value="${escola.endereco}"/></td>
 								<td><c:out value="${escola.telefone}"/></td>
-								<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+								<td><a href="excluirEscola?codigo=${escola.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
 							</tr>
 						</c:forEach>
 				    </tbody>

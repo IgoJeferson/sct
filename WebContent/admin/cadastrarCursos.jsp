@@ -46,7 +46,7 @@
 			<div class="panel-body">
 			
 				<form action="cadastrarCurso" method="post">
-					
+					<div>${mensagem}</div>
 					  <div class="form-group col-md-12">
 					  	
 					  	<label class="control-label" for="escola">Escola</label>
@@ -100,7 +100,8 @@
 											* ${aluno.nome} <br>
 										</c:forEach>
 									</td>
-									<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a href="excluirCurso?codigo=${curso.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a href="${pageContext.request.contextPath}/admin/editarCursos.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
 								</tr>
 							</c:forEach>
 					    </tbody>

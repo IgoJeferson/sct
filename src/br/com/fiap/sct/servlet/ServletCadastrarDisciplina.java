@@ -42,7 +42,7 @@ public class ServletCadastrarDisciplina extends HttpServlet {
 			disciplina.setCurso(cursoSelecionado);
 			disciplina.setProfessor(professorSelecionado);
 			disciplinaDao.adicionar(disciplina);
-				
+			request.setAttribute("mensagem", "Disciplina incluída com sucesso");
 			request.getRequestDispatcher("cadastrarDisciplinas.jsp").forward(request, response);
 			
 		} catch (Exception e) {

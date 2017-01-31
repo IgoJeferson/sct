@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
 			<div class="panel-body">
 			
 				<form action="cadastrarDisciplina" method="post">
-					
+					<div>${mensagem}</div>
 					  <div class="form-group col-md-12">
 					  	
 					  	<label class="control-label" for="curso">Curso</label>
@@ -92,7 +93,8 @@
 									<td><c:out value="${disciplina.curso.nome}"/></td>
 									<td><c:out value="${disciplina.nome}"/></td>
 									<td><c:out value="${disciplina.professor.nome}"/></td>
-									<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a href="excluirDisciplina?codigo=${disciplina.id }"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td><a href="${pageContext.request.contextPath}/admin/editarDisciplinas.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
 								</tr>
 							</c:forEach>
 					    </tbody>

@@ -39,7 +39,7 @@ public class ServletCadastrarEscola extends HttpServlet {
 			EscolaDao escolaDao = new EscolaDao();
 			escolaDao.adicionar(escola);
 			
-			request.setAttribute("mensagem", "Escola " + escola.getId() + " incluído com sucesso");
+			request.setAttribute("mensagem", "Escola: " + escola.getNome() + " incluída com sucesso");
 			request.getRequestDispatcher("cadastrarEscolas.jsp").forward(request, response);
 			
 		} catch (Exception e) {

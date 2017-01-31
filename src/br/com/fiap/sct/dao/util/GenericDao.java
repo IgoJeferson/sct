@@ -52,7 +52,9 @@ public class GenericDao<T> implements Dao<T> {
 	@Override
 	public void remover(T entidade) {
 		em = JpaUtil.getEntityManager();
-		em.remove(entidade);
+		em.getTransaction().begin();
+		em.remove(em.merge(entidade));
+		em.getTransaction().commit();
 	}
 	
 }

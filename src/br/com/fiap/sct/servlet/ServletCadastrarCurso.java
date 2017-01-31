@@ -37,7 +37,7 @@ public class ServletCadastrarCurso extends HttpServlet {
 			
 			CursoDao cursoDao = new CursoDao();
 			cursoDao.adicionar(curso);
-			
+			request.setAttribute("mensagem", "Curso: " + curso.getNome() + " incluído com sucesso");
 			request.getRequestDispatcher("cadastrarCursos.jsp").forward(request, response);
 			
 			
