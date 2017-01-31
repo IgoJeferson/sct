@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SCT - Notas</title>
+	<title>SCT - Editar Notas</title>
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	 <meta charset="utf-8" />
 	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -27,57 +27,46 @@
 	<jsp:useBean id="cursoBean" class="br.com.fiap.sct.bean.CursosBean" />
 	
 	<div class="container">
-		<div class="panel panel-warning">
-			<div class="panel-heading">
-				<h5 class="panel-title">
-					<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Avaliação do Aluno
-				</h5>
-			</div>
+		<div class="panel panel-success">
+			<div class="panel-heading">Editar Notas</div>
 			<div class="panel-body">
 			
-  				<div class="form-group col-md-8">
-					<label class="control-label" for="nome">Nome do Aluno</label>  
-  		 			<input id="nome" name="nome" type="text" value="${aluno.nome}" class="form-control input-md" readonly />
-  				</div>
-  				
-  				<div class="form-group col-md-12">
-					<label class="control-label" for="curso">Curso</label>
-					<input id="curso" name="curso" type="text" value="${aluno.curso.nome}" class="form-control input-md" readonly />
-				</div>
+				<form action="cadastrarNota" method="#">
+					
+
+					  
+  					  <div class="form-group col-md-8">
+						  <label class="control-label" for="nome">Disciplinas</label>  
+  		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome da Disciplina" class="form-control input-md" required />
+  					  </div>
   					  
-  				<div class="form-group col-md-12">
-					<label class="control-label" for="ra">Disciplina</label>  
-  		 			<input id="disciplina" name="disciplina" type="text" value="${disciplina.nome}" class="form-control input-md" readonly />
-  				</div>
-  					  
-		  		<br><br><br><br>
-		  		
-		  		<form action="cadastrarNota" method="post">
-		  			  
-		  			  <input id="codigoAluno" name="codigoAluno" value="${aluno.id}" hidden=true />
-		  			  <input id="codigoDisciplina" name="codigoDisciplina" value="${disciplina.id}" hidden=true />
-		  				
-  					  <div class="form-group col-md-4">
-						  <label class="control-label" for="projeto1">Projeto 1</label>  
-  		 				  <input id="projeto1" name="projeto1" type="number" value="${nota.projeto1}" class="form-control input-md" required />
+  					   <div class="form-group col-md-4">
+						  <label class="control-label" for="ra">Registro do ALuno (RA)</label>  
+  		 				  <input id="ra" name="ra" type="number" placeholder="Digite o RA do Aluno" class="form-control input-md" required />
   					  </div>
   					  
   					  <div class="form-group col-md-4">
-						  <label class="control-label" for="atividadePratica">Atividade Prática</label>  
-  		 				  <input id="atividadePratica" name="atividadePratica" value="${nota.atividadePratica}" type="number" placeholder="Digite o Login do Professor" class="form-control input-md" required />
+						  <label class="control-label" for="login">Atividade Pratica</label>  
+  		 				  <input id="login" name="login" type="text" placeholder="Digite a nota da Atividade Pratica" class="form-control input-md" required />
+  		 				  <span class="help-block"> </span>  
+  					  </div>
+  					  
+  					  <div class="form-group col-md-4">
+						  <label class="control-label" for="projeto1">Projeto 1</label>  
+  		 				  <input id="projeto1" name="projeto1" type="projeto1" placeholder="Digite a nota do Projeto 1" class="form-control input-md" required />
   					  </div>
   					  
   					  <div class="form-group col-md-4">
 						  <label class="control-label" for="projeto2">Projeto 2</label>  
-  		 				  <input id="projeto2" name="projeto2" type="number" value="${nota.projeto2}" placeholder="Digite a senha" class="form-control input-md" required />
+  		 				  <input id="projeto2" name="projeto2" type="password" placeholder="Digite a nota do Projeto 2" class="form-control input-md" required />
   					  </div>
-  					  
+    
 					  <div class="pull-right">
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Salvar </button>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Salvar</button>
 					  </div>
 					    	
 				 </form>
-		  		
+
 			</div>  
 		</div>
 	</div>

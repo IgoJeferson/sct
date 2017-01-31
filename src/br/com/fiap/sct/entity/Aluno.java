@@ -1,6 +1,8 @@
 package br.com.fiap.sct.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,11 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SCT_ALUNOS")
+@Table(name = "ALUNOS")
 public class Aluno implements Serializable {
 
 	private static final long serialVersionUID = 422519831384293718L;
@@ -38,8 +41,21 @@ public class Aluno implements Serializable {
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuario;
 
-	@OneToOne(cascade=CascadeType.MERGE,fetch = FetchType.EAGER)
-	private Notas nota;
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name="NOTA_ID")
+	private Set<Nota> notas  = new HashSet<>();
+
+	public Set<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(Set<Nota> nota) {
+		this.notas = nota;
+	}
+	
+	public void addNota(Nota nota){
+		this.notas.add(nota);
+	}
 
 	public Integer getId() {
 		return id;
@@ -73,14 +89,6 @@ public class Aluno implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Notas getNota() {
-		return nota;
-	}
-
-	public void setNota(Notas nota) {
-		this.nota = nota;
-	}
-
 	public Curso getCurso() {
 		return curso;
 	}
@@ -91,7 +99,7 @@ public class Aluno implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Aluno [id=" + id + ", ra=" + ra + ", nome=" + nome + ", usuario=" + usuario + ", nota=" + nota + "]";
+		return "Aluno [id=" + id + ", ra=" + ra + ", nome=" + nome + ", usuario=" + usuario + "]";
 	}
 	
 }

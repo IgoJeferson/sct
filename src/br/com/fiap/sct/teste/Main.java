@@ -1,5 +1,7 @@
 package br.com.fiap.sct.teste;
 
+import java.util.Set;
+
 import br.com.fiap.sct.dao.AlunoDao;
 import br.com.fiap.sct.dao.CursoDao;
 import br.com.fiap.sct.dao.DisciplinaDao;
@@ -11,8 +13,8 @@ import br.com.fiap.sct.entity.Aluno;
 import br.com.fiap.sct.entity.Curso;
 import br.com.fiap.sct.entity.Disciplina;
 import br.com.fiap.sct.entity.Escola;
-import br.com.fiap.sct.entity.Notas;
-import br.com.fiap.sct.entity.NotasPK;
+import br.com.fiap.sct.entity.Nota;
+import br.com.fiap.sct.entity.NotaPK;
 import br.com.fiap.sct.entity.Professor;
 import br.com.fiap.sct.entity.Usuario;
 import br.com.fiap.sct.type.Perfil;
@@ -78,12 +80,12 @@ public class Main {
 //		disciplinaDao.atualizar(disciplina2);
 //		professorDao.atualizar(professor);
 		
-		Usuario usuarioAluno = new Usuario();
-		usuarioAluno.setLogin("igao");
-		usuarioAluno.setSenha("123");
-		usuarioAluno.setPerfil(Perfil.ADMINISTRADOR);
-		usuarioDao.adicionar(usuarioAluno);
-		System.out.println(usuarioAluno);
+//		Usuario usuarioAluno = new Usuario();
+//		usuarioAluno.setLogin("igao");
+//		usuarioAluno.setSenha("123");
+//		usuarioAluno.setPerfil(Perfil.ADMINISTRADOR);
+//		usuarioDao.adicionar(usuarioAluno);
+//		System.out.println(usuarioAluno);
 //		
 //		Aluno aluno1 = new Aluno();
 //		aluno1.setNome("IGAO");
@@ -98,17 +100,25 @@ public class Main {
 //		cursoDao.atualizar(curso1);
 //		System.out.println(curso1);
 //		
-//		NotasPK notaPK = new NotasPK();
-//		notaPK.setAlunoID(aluno1.getId());
-//		notaPK.setDisciplinaID(disciplina1.getId());
+		Aluno igor = alunoDao.buscar(1);
+		
+		Set<Disciplina> disciplinas = igor.getCurso().getDisciplinas();
+		
+		for (Disciplina disciplina : disciplinas) {
+			NotaPK notaPK = new NotaPK();
+			notaPK.setAluno(igor.getId());
+			notaPK.setDisciplina(disciplina.getId());
+			
+			Nota notas = new Nota();
+			notas.setNotaPK(notaPK);
+			notas.setAtividadePratica(10);
+			notas.setProjeto1(10);
+			notas.setProjeto2(8);
+			
+			notasDao.adicionar(notas);
+		}
+		
 //		
-//		Notas notas = new Notas();
-//		notas.setNotaPK(notaPK);
-//		notas.setAtividadePratica(10);
-//		notas.setProjeto1(10);
-//		notas.setProjeto2(8);
-//		
-//		notasDao.adicionar(notas);
 //		System.out.println(aluno1);
 		
 		System.out.println("=====> TESTE FINALIZADO !!! <=====");

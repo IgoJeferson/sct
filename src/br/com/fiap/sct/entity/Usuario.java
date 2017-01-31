@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import br.com.fiap.sct.type.Perfil;
 
 @Entity
-@Table(name = "SCT_USUARIOS")
+@Table(name = "USUARIOS")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = -14032184034480956L;
