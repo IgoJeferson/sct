@@ -64,12 +64,12 @@
   					  
   					  <div class="form-group col-md-4">
 						  <label class="control-label" for="atividadePratica">Atividade Prática</label>  
-  		 				  <input id="atividadePratica" name="atividadePratica" value="${nota.atividadePratica}" type="number" placeholder="Digite o Login do Professor" class="form-control input-md" required />
+  		 				  <input id="atividadePratica" name="atividadePratica" value="${nota.atividadePratica}" type="number" class="form-control input-md" required />
   					  </div>
   					  
   					  <div class="form-group col-md-4">
 						  <label class="control-label" for="projeto2">Projeto 2</label>  
-  		 				  <input id="projeto2" name="projeto2" type="number" value="${nota.projeto2}" placeholder="Digite a senha" class="form-control input-md" required />
+  		 				  <input id="projeto2" name="projeto2" type="number" value="${nota.projeto2}" class="form-control input-md" required />
   					  </div>
   					  
 					  <div class="pull-right">

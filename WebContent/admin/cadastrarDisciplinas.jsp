@@ -93,7 +93,6 @@
 									<td><c:out value="${disciplina.nome}"/></td>
 									<td><c:out value="${disciplina.professor.nome}"/></td>
 									<td><a href="excluirDisciplina?codigo=${disciplina.id }"><span class="glyphicon glyphicon-trash"></span></a></td>
-									<td><a href="${pageContext.request.contextPath}/admin/editarDisciplinas.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
 								</tr>
 							</c:forEach>
 					    </tbody>
