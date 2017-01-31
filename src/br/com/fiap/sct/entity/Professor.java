@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SCT_PROFESSORES")
+@Table(name = "PROFESSORES")
 public class Professor implements Serializable {
 
 	private static final long serialVersionUID = 1919387469915501134L;

@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SCT_DISCIPLINAS")
+@Table(name = "DISCIPLINAS")
 public class Disciplina implements Serializable {
 
 	private static final long serialVersionUID = -5039456820736552686L;

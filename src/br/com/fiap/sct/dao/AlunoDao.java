@@ -25,7 +25,6 @@ public class AlunoDao extends GenericDao<Aluno> {
 
 			em = JpaUtil.getEntityManager();
 			em.getTransaction().begin();
-
 			TypedQuery<Aluno> query = em.createQuery("select distinct a from Aluno a " + "inner join a.curso c " + "inner join c.disciplinas as d " + "where d.professor.id = :codigoProfessor",
 					Aluno.class);
 			query.setParameter("codigoProfessor", codigoProfessor);

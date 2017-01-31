@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SCT - Cadastro de Professores</title>
+	<title>SCT - Editar Cadastro de Alunos</title>
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	 <meta charset="utf-8" />
 	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -22,41 +22,42 @@
 <body>
 	
 	<jsp:include page="menu.jsp"></jsp:include>
-	<jsp:useBean id="escolaBean" class="br.com.fiap.sct.bean.EscolasBean" />
+	<jsp:useBean id="alunoBean" class="br.com.fiap.sct.bean.AlunosBean" />
 	<jsp:useBean id="professorBean" class="br.com.fiap.sct.bean.ProfessoresBean" />
-	<jsp:useBean id="alunosBean" class="br.com.fiap.sct.bean.AlunosBean" />
+	<jsp:useBean id="cursoBean" class="br.com.fiap.sct.bean.CursosBean" />
 	
 	<div class="container">
 		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h5 class="panel-title">
-					<span class="glyphicon glyphicon-user"></span>&nbsp;Cadastro de Professores
-				</h5>
-			</div>
+			<div class="panel-heading">Editar Cadastro de Alunos</div>
 			<div class="panel-body">
 			
-				<form action="cadastrarProfessor" method="post">
-					<div>${mensagem}</div>
-					  <div class="form-group col-md-5">
+				<form action="cadastrarAluno" method="post">
+					
+					<div class="form-group col-md-12">
 					  	
-					  	<label class="control-label" for="escola">Escola</label>
-					    <select id="escola" name="escolaSelecionada" class="form-control" required>
+					  	<label class="control-label" for="curso">Curso</label>
+					    <select id="curso" name="cursoSelecionado" class="form-control" required>
 					      <option value="">Selecione</option>
-					      <c:forEach var="escola" items="${escolaBean.consultarEscolas}">
-							<option value="${escola.id}">${escola.nome}</option>					      
+					      <c:forEach var="curso" items="${cursoBean.consultarCursos}">
+							<option value="${curso.id}">${curso.nome}</option>					      
 					      </c:forEach>
 					    </select>
 					    
-					  </div>
+					 </div>
 					  
-  					  <div class="form-group col-md-4">
+  					  <div class="form-group col-md-8">
 						  <label class="control-label" for="nome">Nome</label>  
-  		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome do Professor" class="form-control input-md" required />
+  		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome do Aluno" class="form-control input-md" required />
+  					  </div>
+  					  
+  					   <div class="form-group col-md-4">
+						  <label class="control-label" for="ra">Registro do ALuno (RA)</label>  
+  		 				  <input id="ra" name="ra" type="number" placeholder="Digite o RA do Aluno" class="form-control input-md" required />
   					  </div>
   					  
   					  <div class="form-group col-md-4">
 						  <label class="control-label" for="login">Login</label>  
-  		 				  <input id="login" name="login" type="text" placeholder="Digite o Login do Professor" class="form-control input-md" required />
+  		 				  <input id="login" name="login" type="text" placeholder="Digite o Login do Aluno" class="form-control input-md" required />
   		 				  <span class="help-block">Este Login será usado para entrar no sistema</span>  
   					  </div>
   					  
@@ -71,55 +72,15 @@
   					  </div>
     
 					  <div class="pull-right">
-						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Incluir</button>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span> Salvar</button>
 					  </div>
 					    	
 				 </form>
-		  		<br><br><br><br><br><br><br><br>
-		  		<br><br>
-				<div class="panel panel-info">
-				  
-				  <div class="panel-heading">Lista de Professores</div>
-				  <div class="panel-body">
-				     <table class="table">
-					    <thead>
-					    	<tr>
-					    		<th>Escola</th>
-						    	<th>Nome</th>
-						    	<th>Disciplinas Ministrados</th>
-						    	<th>Todos Alunos</th>
-						    	<th></th>
-						    </tr>	
-					    </thead>
-					    <tbody>
-					    	<c:forEach var="professor" items="${professorBean.consultarProfessores}">
-								<tr>
-									<td><c:out value="${professor.escola.nome}"/></td>
-									<td><c:out value="${professor.nome}"/></td>
-									<td>
-										<c:forEach var="disciplina" items="${professor.disciplinas}">
-											* ${disciplina.nome} <br>
-										</c:forEach>
-									</td>
-									<td>
-										<jsp:setProperty name="alunosBean" property="codigoProfessor" value="${professor.id}"/>
-										<c:forEach var="aluno" items="${alunosBean.consultarAlunosPorProfessor}">
-											* ${aluno.nome} <br>
-										</c:forEach>
-									</td>
-									<td><a href="excluirProfessor?codigo=${professor.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
-									<td><a href="${pageContext.request.contextPath}/admin/editarProfessores.jsp"><span class="glyphicon glyphicon-edit"></span></a></td>
-								</tr>
-							</c:forEach>
-					    </tbody>
-					  </table>
-				  </div>
-				
-				</div>
+
 			</div>  
 		</div>
 	</div>
-	
+		
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
@@ -127,10 +88,9 @@
 		$(function(){
 			$('.menu').click(function(){
 				$('.menu').removeClass('active');
-				$('#menuProfessor').addClass('active');
+				$('#menuAlunor').addClass('active');
 			});
 		});
 	</script>
 </body>
 </html>
-

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -35,7 +34,7 @@
 			<div class="panel-body">
 			
 				<form action="cadastrarEscola" method="post">
-					<div>${mensagem}</div>	
+					<div>${mensagem}</div>
   					  <div class="form-group col-md-12">
 						  <label class="control-label" for="nome">Nome</label>  
   		 				  <input id="nome" name="nome" type="text" placeholder="Digite o nome da Escola" class="form-control input-md" required maxlength="80" />

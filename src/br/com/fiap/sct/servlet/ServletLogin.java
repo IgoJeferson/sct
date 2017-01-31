@@ -3,18 +3,19 @@ package br.com.fiap.sct.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.fiap.sct.dao.AlunoDao;
 import br.com.fiap.sct.dao.UsuarioDao;
+import br.com.fiap.sct.entity.Aluno;
 import br.com.fiap.sct.entity.Usuario;
 import br.com.fiap.sct.type.Perfil;
 
-@WebServlet(urlPatterns = { "/login" }, initParams = { @WebInitParam(name = "user", value = "admin"), @WebInitParam(name = "pwd", value = "admin") })
+@WebServlet(urlPatterns = { "/login" })
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,10 +37,15 @@ public class ServletLogin extends HttpServlet {
 
 			UsuarioDao dao = new UsuarioDao();
 			Usuario usuarioAutenticado = dao.buscarUsuario(login, senha, perfil);
-
+			
 			if (usuarioAutenticado != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("usuarioAutenticado", usuarioAutenticado);
+				
+				if(perfil == Perfil.ALUNO){
+					Aluno aluno = new AlunoDao().consultarAlunoPeloUsuario(usuarioAutenticado.getId());
+					session.setAttribute("codigoAluno", aluno.getId());
+				}
 				response.sendRedirect("admin/home.jsp");
 				
 			} else {

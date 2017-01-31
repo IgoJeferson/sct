@@ -15,17 +15,25 @@
 	
 	    <div class="collapse navbar-collapse" id="menu">
 	      <ul class="nav navbar-nav">
+	      <c:if test="${sessionScope.usuarioAutenticado.perfil eq 'ADMINISTRADOR'}">
 	        <li id="menuEscola" class="menu"><a href="${pageContext.request.contextPath}/admin/cadastrarEscolas.jsp">Escolas</a></li>
 	        <li id="menuCurso" class="menu"><a href="${pageContext.request.contextPath}/admin/cadastrarCursos.jsp">Cursos</a></li>
 	        <li id="menuDisciplina" class="menu"><a href="${pageContext.request.contextPath}/admin/cadastrarDisciplinas.jsp">Disciplinas</a></li>
 	        <li id="menuProfessor" class="menu"><a href="${pageContext.request.contextPath}/admin/cadastrarProfessores.jsp">Professores</a></li>
+	       </c:if>
 	        
 	        <li id="menuAluno" class="menu dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alunos <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="${pageContext.request.contextPath}/admin/cadastrarAlunos.jsp">Consultar Alunos</a></li>
-	            <li><a href="${pageContext.request.contextPath}/admin/cadastrarNotas.jsp">Avaliar</a></li>
-	            <li><a href="#">Consultar Notas</a></li>
+		          <c:choose>
+		          	<c:when test="${sessionScope.usuarioAutenticado.perfil eq 'ALUNO'}">
+		          		<li><a href="${pageContext.request.contextPath}/admin/consultarBoletim?codigoAluno=${sessionScope.codigoAluno}">Consultar Notas</a></li>
+		          	</c:when>
+		          	<c:otherwise>
+		          		<li><a href="${pageContext.request.contextPath}/admin/cadastrarAlunos.jsp">Consultar Alunos</a></li>
+		          	</c:otherwise>
+		          </c:choose>
+	            <li>
 	          </ul>
 	        </li>
 	      </ul>

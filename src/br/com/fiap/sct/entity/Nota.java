@@ -8,18 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SCT_NOTAS")
-public class Notas implements Serializable {
+@Table(name = "NOTAS")
+public class Nota implements Serializable {
 
 	private static final long serialVersionUID = 4392047100016330244L;
 
 	@EmbeddedId
-	private NotasPK notaPK;
+	private NotaPK notaPK;
 	
-//	Projeto1 (30%),
-//	Atividade Prática (30%) 
-//	e Projeto 2 (40%).
-
 	@Column(name="PROJETO_1", nullable=false, length=2)
 	private Integer projeto1;
 	
@@ -29,11 +25,11 @@ public class Notas implements Serializable {
 	@Column(name="ATIVIDADE_PRATICA", nullable=false, length=2)
 	private Integer atividadePratica;
 
-	public NotasPK getNotaPK() {
+	public NotaPK getNotaPK() {
 		return notaPK;
 	}
 
-	public void setNotaPK(NotasPK notaPK) {
+	public void setNotaPK(NotaPK notaPK) {
 		this.notaPK = notaPK;
 	}
 

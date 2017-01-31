@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SCT_CURSOS")
+@Table(name = "CURSOS")
 public class Curso implements Serializable {
 
 	private static final long serialVersionUID = 9050107199112574124L;
@@ -34,11 +34,11 @@ public class Curso implements Serializable {
 	@JoinColumn(name="ESCOLA_ID")
 	private Escola escola;
 	
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name="CURSO_ID")
 	private Set<Disciplina> disciplinas = new HashSet<>(); 
 	
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name="CURSO_ID")
 	private Set<Aluno> alunos = new HashSet<>();
 

@@ -36,8 +36,7 @@
 			<div class="panel-body">
 			
 				<form action="cadastrarAluno" method="post">
-				<div>${mensagem}</div>
-					
+					<div>${mensagem}</div>
 					<div class="form-group col-md-12">
 					  	
 					  	<label class="control-label" for="curso">Curso</label>
