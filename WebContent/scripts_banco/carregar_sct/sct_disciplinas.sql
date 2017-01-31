@@ -16,29 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `sct_usuarios`
+-- Dumping data for table `disciplinas`
 --
 
-DROP TABLE IF EXISTS `sct_usuarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sct_usuarios` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `LOGIN` varchar(45) NOT NULL,
-  `PERFIL` varchar(255) DEFAULT NULL,
-  `SENHA` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sct_usuarios`
---
-
-LOCK TABLES `sct_usuarios` WRITE;
-/*!40000 ALTER TABLE `sct_usuarios` DISABLE KEYS */;
-INSERT INTO `sct_usuarios` VALUES (1,'igao','ADMINISTRADOR','123'),(2,'michel','PROFESSOR','fiap'),(3,'emilio','PROFESSOR','fiap'),(4,'fabio','PROFESSOR','fiap'),(5,'clovis','PROFESSOR','usp'),(6,'igo','ALUNO','123'),(7,'phillipe','ALUNO','123'),(8,'giuliana','ALUNO','123');
-/*!40000 ALTER TABLE `sct_usuarios` ENABLE KEYS */;
+LOCK TABLES `disciplinas` WRITE;
+/*!40000 ALTER TABLE `disciplinas` DISABLE KEYS */;
+INSERT INTO `disciplinas` VALUES (1,'JAVA NA WEB',1,2),(2,'FUNDAMENTOS DA TECNOLOGIA JAVA E UML',1,1),(3,'METODOLOGIA DE DESENVOLVIMENTO ÃGIL',1,3),(4,'PERSISTÃNCIA EM JAVA (JDBC E JPA)',1,2);
+/*!40000 ALTER TABLE `disciplinas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-29 21:44:14
+-- Dump completed on 2017-01-31  1:29:18

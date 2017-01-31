@@ -16,29 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `sct_notas`
+-- Dumping data for table `professores`
 --
 
-DROP TABLE IF EXISTS `sct_notas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sct_notas` (
-  `ALUNO_ID` int(11) NOT NULL,
-  `DISCIPLINA_ID` int(11) NOT NULL,
-  `ATIVIDADE_PRATICA` int(11) NOT NULL,
-  `PROJETO_1` int(11) NOT NULL,
-  `PROJETO_2` int(11) NOT NULL,
-  PRIMARY KEY (`ALUNO_ID`,`DISCIPLINA_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sct_notas`
---
-
-LOCK TABLES `sct_notas` WRITE;
-/*!40000 ALTER TABLE `sct_notas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sct_notas` ENABLE KEYS */;
+LOCK TABLES `professores` WRITE;
+/*!40000 ALTER TABLE `professores` DISABLE KEYS */;
+INSERT INTO `professores` VALUES (1,'MICHEL PEREIRA FERNANDES',1,2),(2,'EMILIO CELSO DE SOUZA',1,3),(3,'FABIO MINORU SAKAMOTO',1,4),(4,'CLOVIS DE BARROS FILHO',2,5);
+/*!40000 ALTER TABLE `professores` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-29 21:44:14
+-- Dump completed on 2017-01-31  1:29:18

@@ -16,33 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `sct_professores`
+-- Dumping data for table `escolas`
 --
 
-DROP TABLE IF EXISTS `sct_professores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sct_professores` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NOME` varchar(45) NOT NULL,
-  `ESCOLA_ID` int(11) DEFAULT NULL,
-  `USUARIO_ID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_hsxy5g51pm0gymrapge0od7m7` (`ESCOLA_ID`),
-  KEY `FK_ux72ngwp8wf95iet80q4o082` (`USUARIO_ID`),
-  CONSTRAINT `FK_hsxy5g51pm0gymrapge0od7m7` FOREIGN KEY (`ESCOLA_ID`) REFERENCES `sct_escolas` (`ID`),
-  CONSTRAINT `FK_ux72ngwp8wf95iet80q4o082` FOREIGN KEY (`USUARIO_ID`) REFERENCES `sct_usuarios` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sct_professores`
---
-
-LOCK TABLES `sct_professores` WRITE;
-/*!40000 ALTER TABLE `sct_professores` DISABLE KEYS */;
-INSERT INTO `sct_professores` VALUES (1,'MICHEL PEREIRA FERNANDES',1,2),(2,'EMILIO CELSO DE SOUZA',1,3),(3,'FABIO MINORU SAKAMOTO',1,4),(4,'CLOVIS DE BARROS FILHO',2,5);
-/*!40000 ALTER TABLE `sct_professores` ENABLE KEYS */;
+LOCK TABLES `escolas` WRITE;
+/*!40000 ALTER TABLE `escolas` DISABLE KEYS */;
+INSERT INTO `escolas` VALUES (1,'Lins de Vasconcelos, 1222 - Cambuci','FIAP - Faculdade de InformÃ¡tica e AdministraÃ§Ã£o Paulista','(11)3385-8010'),(2,'ButantÃ£, SÃ£o Paulo - SP, 03178-200','USP - Universidade de SÃ£o Paulo','(11) 3091-3116');
+/*!40000 ALTER TABLE `escolas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-29 21:44:14
+-- Dump completed on 2017-01-31  1:29:17
