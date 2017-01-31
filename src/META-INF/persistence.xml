@@ -8,10 +8,10 @@
 		<class>br.com.fiap.sct.entity.Curso</class>
 		<class>br.com.fiap.sct.entity.Disciplina</class>
 		<class>br.com.fiap.sct.entity.Escola</class>
-		<class>br.com.fiap.sct.entity.Notas</class>
+		<class>br.com.fiap.sct.entity.Nota</class>
 		<class>br.com.fiap.sct.entity.Professor</class>
 		<class>br.com.fiap.sct.entity.Usuario</class>
-		<class>br.com.fiap.sct.entity.NotasPK</class>
+		<class>br.com.fiap.sct.entity.NotaPK</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.format_sql" value="true" />
